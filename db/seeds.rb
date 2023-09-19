@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create(email: "admin@example.com", password: 'root', password_confirmation: 'root')
+User.create(email: "admin@example.com", name: "Admin", password: 'root', password_confirmation: 'root')
+User.create(email: "test@example.com", name: "Tester", password: "password", password_confirmation: "password")
 
 5.times do |x|
   Post.create(title: "Title #{x + 1}", body: "There are #{x} seeded posts above this one.", user_id: User.first.id)
