@@ -7,11 +7,9 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      flash[:notice] = "Comment has been created"
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: 'Comment has been created'
     else
-      flash[:alert] = "Comment was not created"
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), alert: 'Comment has not been created'
     end
   end
 
@@ -23,7 +21,7 @@ class CommentsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:post_id])
   end
 
   def comment_params
