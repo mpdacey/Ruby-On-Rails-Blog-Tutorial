@@ -4,7 +4,6 @@ export default class extends Controller {
   initialize() {}
   connect() {}
   toggleForm(event) {
-    console.log("Got here");
     event.preventDefault();
     event.stopPropagation();
     const formID = event.params["form"];
@@ -14,5 +13,18 @@ export default class extends Controller {
     const commentBodyID = event.params["body"];
     const commentBody = document.getElementById(commentBodyID);
     commentBody.classList.toggle("d-none");
+    const commentEditID = event.params["edit"];
+    const commentEditButton = document.getElementById(commentEditID);
+    this.toggleEditButton(commentEditButton);
+  }
+
+  toggleEditButton(editButton) {
+    editButton.classList.toggle("btn-warning");
+    editButton.classList.toggle("btn-secondary");
+    if (editButton.classList.contains("btn-warning")) {
+      editButton.innerText = "Edit";
+    } else {
+      editButton.innerText = "Cancel";
+    }
   }
 }
