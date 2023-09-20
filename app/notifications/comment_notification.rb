@@ -16,12 +16,15 @@ class CommentNotification < Noticed::Base
   # param :post
 
   # Define helper methods to make rendering easier.
-  #
-  # def message
-  #   t(".message")
-  # end
-  #
-  # def url
-  #   post_path(params[:post])
-  # end
+  
+   def message
+     @post = Post.find(params[:comment][:post_id])
+     @comment = Comment.find(params[:comment][:id])
+     @user = User.find(@comment.user_id)
+     return "#{@user.name != nil ? @user.name : @user.email} commented on #{@post.title.truncate(10)}"
+   end
+  
+  def url
+    post_path(Post.find(params[:comment][:post_id]))
+  end
 end
