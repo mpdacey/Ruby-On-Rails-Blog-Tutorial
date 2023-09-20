@@ -3,8 +3,10 @@
   <br/>
   <div class="btn-group float-start">
     <%= link_to "Back to posts", posts_path, class: "btn btn-info" %>
-    <%= link_to "Edit this post", edit_post_path(@post), class: "btn btn-warning" %>
-    <%= button_to "Delete this post", @post, method: :delete, class: "btn btn-danger" %>
+    <% if current_user == @post.user %>
+      <%= link_to "Edit this post", edit_post_path(@post), class: "btn btn-warning" %>
+      <%= button_to "Delete this post", @post, method: :delete, class: "btn btn-danger" %>
+    <% end %>
   </div>
 </div>
 <div class="container">
